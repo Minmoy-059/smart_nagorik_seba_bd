@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils/app_colors.dart';
+import '../screens/service_search_delegate.dart';
 
 class SearchBox extends StatelessWidget {
   const SearchBox({super.key});
@@ -19,12 +20,35 @@ class SearchBox extends StatelessWidget {
           ),
         ],
       ),
-      child: const TextField(
-        decoration: InputDecoration(
-          hintText: "Search Services...",
-          prefixIcon: Icon(Icons.search, color: AppColors.primaryGreen),
-          border: InputBorder.none,
-          contentPadding: EdgeInsets.all(16),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(12),
+          onTap: () {
+            showSearch(
+              context: context,
+              delegate: ServiceSearchDelegate(),
+            );
+          },
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.search,
+                  color: AppColors.primaryGreen,
+                ),
+                SizedBox(width: 12),
+                Text(
+                  "Search Services...",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
